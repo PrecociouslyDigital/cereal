@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
 import 'settings/settings.dart';
-import 'sources/sources.dart';
+import 'sources/works.dart';
 
 part 'state.g.dart';
 part 'state.freezed.dart';
@@ -19,3 +19,7 @@ class State with _$State {
 
   factory State.fromJson(Json json) => _$StateFromJson(json);
 }
+
+State reducer(State state, action) => State(
+    settings: settingsReducer(state.settings, action),
+    works: worksReducer(state.works, action));

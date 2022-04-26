@@ -1,4 +1,4 @@
-import 'package:cereal/redux/sources/sources.dart';
+import 'package:cereal/redux/sources/works.dart';
 import 'package:cereal/redux/sources/chapter.dart';
 
 import 'package:cereal/resolvers/resolver.dart';

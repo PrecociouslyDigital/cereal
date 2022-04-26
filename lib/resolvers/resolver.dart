@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import "package:html/dom.dart";
 
 import '../redux/sources/chapter.dart';
-import '../redux/sources/sources.dart';
+import '../redux/sources/works.dart';
 
 enum Resolvers {
   @JsonValue("ao3")

@@ -1,4 +1,4 @@
-import 'package:cereal/redux/sources/sources.dart';
+import 'package:cereal/redux/sources/works.dart';
 import 'package:cereal/resolvers/http/http_resolver.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +29,7 @@ class AO3Resolver extends HttpResolver {
   }
 
   @override
-  html.Element getChapterFromUrl(chapterDoc) {
-    return chapterDoc.querySelector('#workskin')!;
+  html.Element getChapterFromUrl(doc) {
+    return doc.querySelector('#workskin')!;
   }
 }

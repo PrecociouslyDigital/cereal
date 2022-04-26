@@ -1,11 +1,12 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:redux/redux.dart';
 
 import 'chapter.dart';
 
-part 'sources.g.dart';
-part 'sources.freezed.dart';
+part 'works.g.dart';
+part 'works.freezed.dart';
 
 typedef Works = IMap<String, Work>;
 
@@ -21,3 +22,15 @@ class Work with _$Work {
     required Chapters chapters,
   }) = _Work;
 }
+
+class AddWorkAction {
+  final Work work;
+  AddWorkAction(this.work);
+}
+
+Works addWorkReducer(Works works, AddWorkAction action) =>
+    works.add(action.work.id, action.work);
+
+final Reducer<Works> worksReducer = combineReducers([
+  TypedReducer(addWorkReducer),
+]);
