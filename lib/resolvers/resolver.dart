@@ -1,3 +1,4 @@
+import 'package:cereal/resolvers/ao3/ao3.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import "package:html/dom.dart";
 
@@ -6,10 +7,14 @@ import '../redux/sources/sources.dart';
 
 enum Resolvers {
   @JsonValue("ao3")
-  ao3,
+  ao3(AO3Resolver());
+
+  const Resolvers(this.resolver);
+  final Resolver resolver;
 }
 
 abstract class Resolver {
+  const Resolver();
   Future<Work> getWork(String id);
-  Future<Document> getChapterText(String workId, String chapterId);
+  Future<Element> getChapterText(String workId, String chapterId);
 }

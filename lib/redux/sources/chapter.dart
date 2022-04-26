@@ -23,7 +23,8 @@ class ReadChapterAction with _$ReadChapterAction {
   const factory ReadChapterAction(
       {required String id, required int wordsRead}) = _ReadChapterAction;
 
-  static Chapter action(Chapter chapter, ReadChapterAction action) {
-    return chapter.copyWith(wordsRead: action.wordsRead);
+  static Chapters action(Chapters chapters, ReadChapterAction action) {
+    return chapters.update(
+        action.id, (chapter) => chapter.copyWith(wordsRead: action.wordsRead));
   }
 }
