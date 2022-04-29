@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:redux/redux.dart';
 
+import '../state.dart';
 import 'chapter.dart';
 
 part 'works.g.dart';
@@ -11,7 +12,6 @@ part 'works.freezed.dart';
 typedef Works = IMap<String, Work>;
 
 @freezed
-@JsonSerializable()
 class Work with _$Work {
   const factory Work({
     required String id,
@@ -21,6 +21,7 @@ class Work with _$Work {
     required ISet<String> tags,
     required Chapters chapters,
   }) = _Work;
+  factory Work.fromJson(Json json) => _$WorkFromJson(json);
 }
 
 class AddWorkAction {

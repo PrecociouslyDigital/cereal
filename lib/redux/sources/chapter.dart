@@ -2,13 +2,14 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../state.dart';
+
 part 'chapter.g.dart';
 part 'chapter.freezed.dart';
 
 typedef Chapters = IMap<String, Chapter>;
 
 @freezed
-@JsonSerializable()
 class Chapter with _$Chapter {
   const factory Chapter({
     required String title,
@@ -16,6 +17,7 @@ class Chapter with _$Chapter {
     required int wordsRead,
     required DateTime published,
   }) = _Chapter;
+  factory Chapter.fromJson(Json json) => _$ChapterFromJson(json);
 }
 
 @freezed

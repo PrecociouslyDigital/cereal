@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:redux/redux.dart';
 
+import '../state.dart';
+
 part 'settings.freezed.dart';
 part 'settings.g.dart';
 
@@ -13,10 +15,10 @@ enum Theme {
 }
 
 @freezed
-@JsonSerializable()
 class Settings with _$Settings {
   const factory Settings({required Theme theme}) = _Settings;
   static const defaultSettings = Settings(theme: Theme.light);
+  factory Settings.fromJson(Json json) => _$SettingsFromJson(json);
 }
 
 class ChangeThemeAction {

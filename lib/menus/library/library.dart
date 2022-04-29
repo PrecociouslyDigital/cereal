@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cereal/menus/bottomnav.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:functional_widget_annotation/functional_widget_annotation.dart';
+
+import '../../redux/state.dart' as state;
+import '../../redux/sources/works.dart';
+import '../../resolvers/resolver.dart';
+
+part 'library.g.dart';
 
 class LibraryPage extends StatelessWidget {
   @override
@@ -17,10 +25,32 @@ class LibraryPage extends StatelessWidget {
         title: const Text('Library'),
       ),
       bottomNavigationBar: const BottomNavBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[],
+      body: state.StoreConnector<List<Work>>(
+        converter: (store) => store.state.works.toValueList(),
+        builder: (context, works) =>
+            works.isEmpty ? const AddWork() : WorkList(works),
       ),
     );
   }
 }
+
+@swidget
+Widget addWork(BuildContext ctx) => ListView.builder(
+    itemCount: 1,
+    itemBuilder: (context, index) => state.StoreConnector<VoidCallback>(
+        converter: (store) => () async => store.dispatch(
+            AddWorkAction(await Resolvers.ao3.resolver.getWork('23949661'))),
+        builder: (context, callback) => InkWell(
+              onTap: callback,
+              child: const ListTile(
+                title: Text('Add Test Work'),
+                subtitle: Text('Do It'),
+              ),
+            )));
+
+@swidget
+Widget workList(BuildContext ctx, List<Work> works) => ListView.builder(
+      itemCount: works.length,
+      itemBuilder: (context, index) => ListTile(
+          title: Text(works[index].title), subtitle: Text(works[index].author)),
+    );
