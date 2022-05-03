@@ -35,3 +35,12 @@ Works addWorkReducer(Works works, AddWorkAction action) =>
 final Reducer<Works> worksReducer = combineReducers([
   TypedReducer(addWorkReducer),
 ]);
+
+Work unknownWork(String id) => Work(
+      title: 'Wrong Work',
+      author: '???',
+      site: '???',
+      tags: ISet(),
+      chapters: IMap(),
+      id: id,
+    );

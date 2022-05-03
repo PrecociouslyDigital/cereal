@@ -25,7 +25,14 @@ class AO3Resolver extends HttpResolver {
         title: "one",
         author: "two",
         tags: ISet(const <String>["three"]),
-        chapters: Chapters());
+        chapters: Chapters({
+          '57598366': Chapter(
+              id: '57598366',
+              title: '1 Introduction',
+              words: 1317360,
+              wordsRead: 0,
+              published: DateTime(2020, 5, 1))
+        }));
   }
 
   @override

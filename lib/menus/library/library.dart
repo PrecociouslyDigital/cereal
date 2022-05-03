@@ -6,6 +6,7 @@ import 'package:functional_widget_annotation/functional_widget_annotation.dart';
 import '../../redux/state.dart' as state;
 import '../../redux/sources/works.dart';
 import '../../resolvers/resolver.dart';
+import '../routes.dart';
 
 part 'library.g.dart';
 
@@ -51,6 +52,9 @@ Widget addWork(BuildContext ctx) => ListView.builder(
 @swidget
 Widget workList(BuildContext ctx, List<Work> works) => ListView.builder(
       itemCount: works.length,
-      itemBuilder: (context, index) => ListTile(
-          title: Text(works[index].title), subtitle: Text(works[index].author)),
+      itemBuilder: (context, index) => InkWell(
+          onTap: () => router.navigateTo(context, works[index].id),
+          child: ListTile(
+              title: Text(works[index].title),
+              subtitle: Text(works[index].author))),
     );
